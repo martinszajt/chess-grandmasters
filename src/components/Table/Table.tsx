@@ -1,11 +1,13 @@
+"use client";
+
 import React, { useRef } from "react";
 import { DataView } from "primereact/dataview";
 import { Toast } from "primereact/toast";
-import { PlayerListItem } from "../../interfaces/player.interface";
+import { IPlayerListItem } from "../../interfaces/player.interface";
 import { usePlayersData } from "../../hooks/usePlayersData";
 
 const Table = () => {
-  const { data: players, isLoading } = usePlayersData(10);
+  const { data: players, isLoading } = usePlayersData();
 
   const toast = useRef<Toast>(null);
 
@@ -15,7 +17,7 @@ const Table = () => {
     </div>
   );
 
-  const itemTemplate = (post: PlayerListItem) => {
+  const itemTemplate = (post: IPlayerListItem) => {
     return (
       <div className="p-col-12 p-4 pt-8 pb-8 cursor-pointer" onClick={() => {}}>
         <div className="product-list-item">
