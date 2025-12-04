@@ -1,9 +1,9 @@
 import axios, { AxiosResponse, GenericAbortSignal } from "axios";
 import HTTP_METHODS from "../utils/httpsMethods";
 
-const nextApiRequest = async <T>(
+const ApiRequest = async <T>(
   method: HTTP_METHODS,
-  endPoint: string,
+  url: string,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   body?: any,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -13,7 +13,7 @@ const nextApiRequest = async <T>(
   try {
     const data: AxiosResponse<T> = await axios({
       method,
-      url: `/api/${endPoint}`,
+      url,
       withCredentials: true,
       signal,
       data: body,
@@ -31,4 +31,4 @@ const nextApiRequest = async <T>(
   }
 };
 
-export default nextApiRequest;
+export default ApiRequest;

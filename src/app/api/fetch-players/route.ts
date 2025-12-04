@@ -1,35 +1,37 @@
+import ApiRequest from "../../../api/ApiClient";
+import {
+  CHESS_API_BASE_URL,
+  CHESS_API_ENDPOINTS,
+} from "../../../config/routes";
 import { IPlayerListItem } from "../../../interfaces/player.interface";
+import HTTP_METHODS from "../../../utils/httpsMethods";
 
 export const dynamic = "force-static";
 
 export async function GET() {
   try {
-    console.log("try");
-    const res = await fetch("https://api.chess.com/pub/titled/GM", {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      cache: "force-cache",
-    });
+    const response = await ApiRequest<{ players?: string[] }>(
+      HTTP_METHODS.GET,
+      `${CHESS_API_BASE_URL}${CHESS_API_ENDPOINTS.TITLED_GRANDMASTERS}`,
+    );
+    const isError = response.data === null;
 
-    if (!res.ok) {
+    if (isError) {
       return Response.json(
-        { error: "Failed to fetch player data" },
-        { status: res.status },
+        {
+          error: "Failed to fetch player data",
+          details: response.error,
+        },
+        { status: response.status ?? 500 },
       );
     }
-
-    const data: { players?: string[] } = await res.json();
+    const { data } = response;
 
     let players: IPlayerListItem[] = [];
 
     if (Array.isArray(data.players)) {
-      players = data.players.map((id: string) => ({
-        id,
-      }));
+      players = data.players.map((id: string) => ({ id }));
     }
-
-    console.log("players", players);
 
     return Response.json(players);
   } catch (error) {

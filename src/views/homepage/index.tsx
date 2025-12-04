@@ -1,9 +1,9 @@
-import Table from "../../components/Table/Table";
+import PlayersTable from "../../components/PlayersTable";
 
 export default function HomepageView() {
   return (
     <>
-      <Table />
+      <PlayersTable />
     </>
   );
 }
