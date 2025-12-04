@@ -2,10 +2,18 @@ export type IPlayerListItem = {
   id: string;
 };
 
-export interface PlayerDetail {
-  id: number;
-  name: string;
-  age: number;
-  position: string;
-  team: string;
+export interface IPlayerDetails {
+  "@id": string;
+  followers: number;
+  is_streamer: boolean;
+  joined: number; // timestamp in seconds
+  last_online: number; // timestamp in seconds
+  league: string;
+  player_id: number;
+  status: string;
+  streaming_platforms: string[]; // array of strings
+  title: string;
+  url: string;
+  username: string;
+  verified: boolean;
 }

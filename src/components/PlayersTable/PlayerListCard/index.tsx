@@ -3,8 +3,8 @@
 import React from "react";
 import { IPlayerListItem } from "../../../interfaces/player.interface";
 
-const PlayerCard = (player: IPlayerListItem) => {
-  if (!player) return null;
+const PlayerListCard = (playerItem: IPlayerListItem) => {
+  if (!playerItem) return null;
 
   return (
     <div className="col-12 sm:col-6 md:col-4 lg:col-3 p-2">
@@ -23,11 +23,13 @@ const PlayerCard = (player: IPlayerListItem) => {
         ></div>
 
         <div className="space-y-1">
-          <p className="text-lg font-bold text-gray-800">Player #{player.id}</p>
+          <p className="text-lg font-bold text-gray-800">
+            Player #{playerItem.id}
+          </p>
         </div>
       </div>
     </div>
   );
 };
 
-export default PlayerCard;
+export default PlayerListCard;

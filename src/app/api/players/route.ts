@@ -12,7 +12,7 @@ export async function GET() {
   try {
     const response = await ApiRequest<{ players?: string[] }>(
       HTTP_METHODS.GET,
-      `${CHESS_API_BASE_URL}${CHESS_API_ENDPOINTS.TITLED_GRANDMASTERS}`,
+      `${CHESS_API_BASE_URL}${CHESS_API_ENDPOINTS.TITLED_GRANDMASTERS_LIST}`,
     );
     const isError = response.data === null;
 

@@ -3,11 +3,16 @@
 import React, { useRef } from "react";
 import { DataView } from "primereact/dataview";
 import { Toast } from "primereact/toast";
-import { usePlayersData } from "../../hooks/usePlayersData";
-import PlayerCard from "./PlayerCard";
+import PlayerListCard from "./PlayerListCard";
+import { IPlayerListItem } from "../../interfaces/player.interface";
 
-const PlayersTable = () => {
-  const { data: players, isLoading } = usePlayersData();
+const PlayersTable = ({
+  isLoading,
+  playerList,
+}: {
+  isLoading: boolean;
+  playerList?: IPlayerListItem[] | null;
+}) => {
   const toast = useRef<Toast>(null);
 
   const header = (
@@ -35,15 +40,15 @@ const PlayersTable = () => {
           flex flex-col h-[75vh]
         "
       >
-        {players && players.length > 0 ? (
+        {playerList && playerList.length > 0 ? (
           <>
             {header}
 
             <div className="overflow-y-auto flex-1 p-5">
               <DataView
-                value={players}
+                value={playerList}
                 layout="list"
-                itemTemplate={PlayerCard}
+                itemTemplate={PlayerListCard}
                 dataKey="id"
                 paginator={false}
                 loading={isLoading}
