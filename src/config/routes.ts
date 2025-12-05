@@ -11,3 +11,9 @@ export enum CHESS_API_ENDPOINTS {
   TITLED_GRANDMASTERS_LIST = "titled/GM",
   PLAYER_DETAILS = "player/:username",
 }
+
+export const ROBOHASH_API_BASE_URL = "https://robohash.org/";
+
+export enum ROBOHASH_API_ENDPOINTS {
+  PLAYER_AVATAR = ":username.png",
+}

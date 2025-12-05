@@ -1,18 +1,13 @@
 "use client";
 
 import React from "react";
-import { Avatar } from "primereact/avatar";
 import { Tag } from "primereact/tag";
 import { IPlayerDetails } from "../../../interfaces/player.interface";
+import UserAvatar from "../../UserAvatar";
 
 const PlayerHeader = ({ playerDetails }: { playerDetails: IPlayerDetails }) => (
   <div className="flex flex-col items-center">
-    <Avatar
-      label={playerDetails.title}
-      size="xlarge"
-      shape="circle"
-      className="mb-3"
-    />
+    <UserAvatar size="large" username={playerDetails.username} />
     <h2 className="text-xl font-bold">{playerDetails.username}</h2>
     <Tag
       value={playerDetails.status}

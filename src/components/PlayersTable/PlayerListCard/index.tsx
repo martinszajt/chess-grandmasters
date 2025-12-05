@@ -2,8 +2,8 @@
 
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { IPlayerListItem } from "../../../interfaces/player.interface";
+import UserAvatar from "../../UserAvatar";
 
 interface PlayerListCardProps {
   playerItem: IPlayerListItem;
@@ -13,7 +13,6 @@ const PlayerListCard: React.FC<PlayerListCardProps> = ({ playerItem }) => {
   if (!playerItem) return null;
 
   const { username } = playerItem;
-  const avatarUrl = `https://robohash.org/${username}.png`;
 
   return (
     <Link
@@ -28,18 +27,7 @@ const PlayerListCard: React.FC<PlayerListCardProps> = ({ playerItem }) => {
     >
       <div className="p-4 rounded-xl flex flex-col items-center text-center cursor-pointer">
         <div className="w-16 h-16 rounded-full flex items-center justify-center mb-3 bg-gray-700">
-          {avatarUrl ? (
-            <Image
-              src={avatarUrl}
-              alt={`Avatar of ${username}`}
-              width={"64"}
-              height={64}
-            />
-          ) : (
-            <span className="text-gray-400">
-              {username.charAt(0).toUpperCase()}
-            </span>
-          )}
+          <UserAvatar username={username} />
         </div>
 
         <div className="space-y-1">

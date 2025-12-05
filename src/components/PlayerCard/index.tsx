@@ -3,9 +3,11 @@
 import React from "react";
 import { Card } from "primereact/card";
 import { Badge } from "primereact/badge";
+import { ProgressSpinner } from "primereact/progressspinner";
 import { IPlayerDetails } from "../../interfaces/player.interface";
 import StatCard from "./StatCard";
 import PlayerHeader from "./PlayerHeader";
+import OnlineClock from "./OnlineClock";
 
 interface PlayerCardProps {
   isLoading: boolean;
@@ -13,13 +15,24 @@ interface PlayerCardProps {
 }
 
 const PlayerCard = ({ isLoading, playerDetails }: PlayerCardProps) => {
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading)
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+          width: "100vw",
+        }}
+      >
+        <ProgressSpinner />
+      </div>
+    );
   if (!playerDetails) return null;
 
   const joinedDate = new Date(playerDetails.joined * 1000).toLocaleDateString();
-  const lastOnlineDate = new Date(
-    playerDetails.last_online * 1000,
-  ).toLocaleDateString();
+  const lastOnlineDate = new Date(playerDetails.last_online * 1000);
 
   return (
     <div className="col-12 sm:col-6 md:col-4 lg:col-3 p-2 bg-gray-900 pt-8">
@@ -36,7 +49,10 @@ const PlayerCard = ({ isLoading, playerDetails }: PlayerCardProps) => {
 
           <StatCard label="Joined" value={joinedDate} />
 
-          <StatCard label="Last Online" value={lastOnlineDate} />
+          <StatCard
+            label="Last Online"
+            value={<OnlineClock date={lastOnlineDate} />}
+          />
 
           <StatCard
             label="Streaming"
