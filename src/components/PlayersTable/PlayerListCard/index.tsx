@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { IPlayerListItem } from "../../../interfaces/player.interface";
 
 interface PlayerListCardProps {
@@ -28,10 +29,11 @@ const PlayerListCard: React.FC<PlayerListCardProps> = ({ playerItem }) => {
       <div className="p-4 rounded-xl flex flex-col items-center text-center cursor-pointer">
         <div className="w-16 h-16 rounded-full flex items-center justify-center mb-3 bg-gray-700">
           {avatarUrl ? (
-            <img
+            <Image
               src={avatarUrl}
-              alt={`${username}'s avatar`}
-              className="w-full h-full rounded-full object-cover"
+              alt={`Avatar of ${username}`}
+              width={"64"}
+              height={64}
             />
           ) : (
             <span className="text-gray-400">
