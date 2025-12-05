@@ -1,63 +1,48 @@
 "use client";
 
 import React, { useRef } from "react";
-import { DataView } from "primereact/dataview";
 import { Toast } from "primereact/toast";
+import { ProgressSpinner } from "primereact/progressspinner";
 import PlayerListCard from "./PlayerListCard";
 import { IPlayerListItem } from "../../interfaces/player.interface";
 
-const PlayersTable = ({
-  isLoading,
-  playerList,
-}: {
+interface PlayersTableProps {
   isLoading: boolean;
   playerList?: IPlayerListItem[] | null;
+}
+
+const PlayersTable: React.FC<PlayersTableProps> = ({
+  isLoading,
+  playerList,
 }) => {
   const toast = useRef<Toast>(null);
-
-  const header = (
-    <div
-      className="
-      sticky top-0 z-10 
-      bg-white/90 
-      backdrop-blur 
-      px-5 py-4 
-      border-b border-gray-200
-    "
-    >
-      <h5 className="text-2xl font-semibold text-gray-800">Players</h5>
-    </div>
-  );
 
   return (
     <div className="max-w-6xl mx-auto mt-10">
       <Toast ref={toast} />
 
-      <div
-        className="
-          bg-white rounded-2xl shadow-xl 
-          border border-gray-200 overflow-hidden 
-          flex flex-col h-[75vh]
-        "
-      >
-        {playerList && playerList.length > 0 ? (
-          <>
-            {header}
+      <div className="bg-white rounded-2xl shadow-xl border-2 border-gray-700 flex flex-col h-[75vh] overflow-hidden">
+        <div className="sticky top-0 z-10 px-5 py-4 bg-gray-700 backdrop-blur">
+          <h5 className="text-2xl font-semibold text-white">Grandmasters</h5>
+        </div>
 
-            <div className="overflow-y-auto flex-1 p-5">
-              <DataView
-                value={playerList}
-                layout="list"
-                itemTemplate={PlayerListCard}
-                dataKey="id"
-                paginator={false}
-                loading={isLoading}
-              />
+        <div className="relative overflow-y-auto flex-1 p-5 bg-gray-900">
+          {isLoading && (
+            <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50 z-20">
+              <ProgressSpinner />
+              <p className="mt-2 text-white">Loading...</p>
             </div>
-          </>
-        ) : (
-          <p className="p-6 text-center text-gray-500">No players found.</p>
-        )}
+          )}
+
+          <div
+            className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ${isLoading ? "opacity-50" : ""}`}
+          >
+            {playerList &&
+              playerList.map((player) => (
+                <PlayerListCard key={player.username} playerItem={player} />
+              ))}
+          </div>
+        </div>
       </div>
     </div>
   );

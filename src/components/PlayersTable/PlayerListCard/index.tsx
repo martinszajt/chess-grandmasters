@@ -4,34 +4,44 @@ import React from "react";
 import Link from "next/link";
 import { IPlayerListItem } from "../../../interfaces/player.interface";
 
-const PlayerListCard = (playerItem: IPlayerListItem) => {
+interface PlayerListCardProps {
+  playerItem: IPlayerListItem;
+}
+
+const PlayerListCard: React.FC<PlayerListCardProps> = ({ playerItem }) => {
   if (!playerItem) return null;
+
+  const { username } = playerItem;
+  const avatarUrl = `https://robohash.org/${username}.png`;
 
   return (
     <Link
-      className="col-12 sm:col-6 md:col-4 lg:col-3 p-2"
+      href={`/players/${username}`}
       target="_blank"
-      href={`/players/${playerItem.username}`}
-      key={playerItem.username}
+      className="
+        col-12 sm:col-6 md:col-4 lg:col-3 p-2
+        bg-gray-800 border border-gray-700
+        shadow-2 hover:shadow-lg hover:-translate-y-1
+        transition-transform
+      "
     >
-      <div
-        className="
-          p-4 bg-white rounded-xl border border-gray-200 shadow-sm 
-          hover:shadow-lg hover:-translate-y-1 
-          transition cursor-pointer flex flex-col items-center text-center
-        "
-      >
-        <div
-          className="
-            w-16 h-16 rounded-full bg-indigo-100 
-            flex items-center justify-center mb-3
-          "
-        ></div>
+      <div className="p-4 rounded-xl flex flex-col items-center text-center cursor-pointer">
+        <div className="w-16 h-16 rounded-full flex items-center justify-center mb-3 bg-gray-700">
+          {avatarUrl ? (
+            <img
+              src={avatarUrl}
+              alt={`${username}'s avatar`}
+              className="w-full h-full rounded-full object-cover"
+            />
+          ) : (
+            <span className="text-gray-400">
+              {username.charAt(0).toUpperCase()}
+            </span>
+          )}
+        </div>
 
         <div className="space-y-1">
-          <p className="text-lg font-bold text-gray-800">
-            Player #{playerItem.username}
-          </p>
+          <p className="text-lg font-bold text-white">{username}</p>
         </div>
       </div>
     </Link>

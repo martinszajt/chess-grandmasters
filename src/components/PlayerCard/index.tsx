@@ -2,10 +2,10 @@
 
 import React from "react";
 import { Card } from "primereact/card";
-import { Avatar } from "primereact/avatar";
 import { Badge } from "primereact/badge";
-import { Tag } from "primereact/tag";
 import { IPlayerDetails } from "../../interfaces/player.interface";
+import StatCard from "./StatCard";
+import PlayerHeader from "./PlayerHeader";
 
 interface PlayerCardProps {
   isLoading: boolean;
@@ -21,55 +21,41 @@ const PlayerCard = ({ isLoading, playerDetails }: PlayerCardProps) => {
     playerDetails.last_online * 1000,
   ).toLocaleDateString();
 
-  const header = (
-    <div className="flex flex-col items-center">
-      <Avatar
-        label={playerDetails.title}
-        size="xlarge"
-        shape="circle"
-        className="mb-3"
-      />
-      <h2 className="text-xl font-bold">{playerDetails.username}</h2>
-      <Tag
-        value={playerDetails.status}
-        severity={playerDetails.status === "Online" ? "success" : "warning"}
-      ></Tag>
-    </div>
-  );
-
   return (
-    <div className="col-12 sm:col-6 md:col-4 lg:col-3 p-2">
-      <Card header={header} className="shadow-2">
-        <div className="space-y-2">
-          <p>
-            <strong>Player ID:</strong> {playerDetails.player_id}
-          </p>
-          <p>
-            <strong>League:</strong> {playerDetails.league}
-          </p>
-          <p>
-            <strong>Followers:</strong> {playerDetails.followers}
-          </p>
-          <p>
-            <strong>Joined:</strong> {joinedDate}
-          </p>
-          <p>
-            <strong>Last Online:</strong> {lastOnlineDate}
-          </p>
-          <p>
-            <strong>Streaming Platforms:</strong>{" "}
-            {playerDetails.streaming_platforms.length > 0
-              ? playerDetails.streaming_platforms.join(", ")
-              : "None"}
-          </p>
-          <p>
-            <strong>Verified:</strong>
-            <Badge
-              value={playerDetails.verified ? "Yes" : "No"}
-              severity={playerDetails.verified ? "success" : "danger"}
-              className="ml-2"
-            />
-          </p>
+    <div className="col-12 sm:col-6 md:col-4 lg:col-3 p-2 bg-gray-900 pt-8">
+      <Card
+        header={<PlayerHeader playerDetails={playerDetails} />}
+        className="shadow-2 text-white bg-gray-900"
+      >
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 bg-gray-900">
+          <StatCard label="Player ID" value={playerDetails.player_id} />
+
+          <StatCard label="League" value={playerDetails.league} />
+
+          <StatCard label="Followers" value={playerDetails.followers} />
+
+          <StatCard label="Joined" value={joinedDate} />
+
+          <StatCard label="Last Online" value={lastOnlineDate} />
+
+          <StatCard
+            label="Streaming"
+            value={
+              playerDetails.streaming_platforms.length > 0
+                ? playerDetails.streaming_platforms.join(", ")
+                : "None"
+            }
+          />
+
+          <StatCard
+            label="Verified"
+            value={
+              <Badge
+                value={playerDetails.verified ? "Yes" : "No"}
+                severity={playerDetails.verified ? "success" : "danger"}
+              />
+            }
+          />
         </div>
       </Card>
     </div>
