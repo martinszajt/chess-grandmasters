@@ -17,7 +17,6 @@ const PlayerListCard: React.FC<PlayerListCardProps> = ({ playerItem }) => {
   return (
     <Link
       href={`/players/${username}`}
-      target="_blank"
       className="
         col-12 sm:col-6 md:col-4 lg:col-3 p-2
         bg-gray-800 border border-gray-700

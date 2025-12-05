@@ -6,12 +6,12 @@ export interface IPlayerDetails {
   "@id": string;
   followers: number;
   is_streamer: boolean;
-  joined: number; // timestamp in seconds
-  last_online: number; // timestamp in seconds
+  joined: number;
+  last_online: number;
   league: string;
   player_id: number;
   status: string;
-  streaming_platforms: string[]; // array of strings
+  streaming_platforms: string[];
   title: string;
   url: string;
   username: string;

@@ -2,7 +2,7 @@ export const MEXT_API_BASE_URL = "/api/";
 
 export enum NEXT_API_ENDPOINTS {
   FETCH_PLAYERS = "players",
-  GET_PLAYER_DETAILS = "players/:username", // Append /:username for details
+  GET_PLAYER_DETAILS = "players/:username",
 }
 
 export const CHESS_API_BASE_URL = "https://api.chess.com/pub/";

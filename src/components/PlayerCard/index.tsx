@@ -2,7 +2,6 @@
 
 import React from "react";
 import { Card } from "primereact/card";
-import { Badge } from "primereact/badge";
 import { ProgressSpinner } from "primereact/progressspinner";
 import { IPlayerDetails } from "../../interfaces/player.interface";
 import StatCard from "./StatCard";
@@ -60,16 +59,6 @@ const PlayerCard = ({ isLoading, playerDetails }: PlayerCardProps) => {
               playerDetails.streaming_platforms.length > 0
                 ? playerDetails.streaming_platforms.join(", ")
                 : "None"
-            }
-          />
-
-          <StatCard
-            label="Verified"
-            value={
-              <Badge
-                value={playerDetails.verified ? "Yes" : "No"}
-                severity={playerDetails.verified ? "success" : "danger"}
-              />
             }
           />
         </div>
