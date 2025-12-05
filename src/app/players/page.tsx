@@ -4,8 +4,6 @@ export const metadata = {
   title: "Chess Players Homepage",
 };
 
-export const Homepage = () => {
+export default function Page() {
   return <HomepageView />;
-};
-
-export default Homepage;
+}
