@@ -1,6 +1,5 @@
 import HomepageView from "../../views/homepage";
 
-
 export const metadata = {
   title: "Chess Players Homepage",
 };
