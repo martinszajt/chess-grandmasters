@@ -1,10 +1,10 @@
 import PlayerView from "../../../views/player";
 
-export async function generateMetadata({ params }: Props) {
+export const generateMetadata = async ({ params }: Props) => {
   return {
     title: `Player Profile - ${params.username}`,
   };
-}
+};
 
 type Props = {
   params: {
@@ -12,10 +12,8 @@ type Props = {
   };
 };
 
-export const PlayerPage = ({ params }: Props) => {
+export default function Page({ params }: Props) {
   const { username } = params;
 
   return <PlayerView username={username} />;
-};
-
-export default PlayerPage;
+}
