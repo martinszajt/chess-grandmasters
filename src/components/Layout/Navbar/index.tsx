@@ -2,10 +2,18 @@
 
 import React from "react";
 import { Menubar } from "primereact/menubar";
-import { Button } from "primereact/button";
+import Link from "next/link";
 
-export default function Navbar() {
+const Navbar = () => {
   return (
-    <Menubar start={[<Button label="Home" key="home" onClick={() => {}} />]} />
+    <Menubar
+      start={[
+        <Link href="/" key="home">
+          Hola
+        </Link>,
+      ]}
+    />
   );
-}
+};
+
+export default Navbar;

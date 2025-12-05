@@ -30,7 +30,7 @@ export async function GET() {
     let players: IPlayerListItem[] = [];
 
     if (Array.isArray(data.players)) {
-      players = data.players.map((id: string) => ({ id }));
+      players = data.players.map((username: string) => ({ username }));
     }
 
     return Response.json(players);

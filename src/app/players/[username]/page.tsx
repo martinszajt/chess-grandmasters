@@ -6,8 +6,10 @@ type Props = {
   };
 };
 
-export default function PlayerPage({ params }: Props) {
+export const PlayerPage = ({ params }: Props) => {
   const { username } = params;
 
   return <PlayerView username={username} />;
-}
+};
+
+export default PlayerPage;

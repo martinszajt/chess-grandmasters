@@ -1,5 +1,5 @@
 export type IPlayerListItem = {
-  id: string;
+  username: string;
 };
 
 export interface IPlayerDetails {

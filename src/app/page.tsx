@@ -1,5 +1,7 @@
 import HomepageView from "../views/homepage";
 
-export default function Home() {
+export const Homepage = () => {
   return <HomepageView />;
-}
+};
+
+export default Homepage;

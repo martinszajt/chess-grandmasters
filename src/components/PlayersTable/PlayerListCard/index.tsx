@@ -1,13 +1,19 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { IPlayerListItem } from "../../../interfaces/player.interface";
 
 const PlayerListCard = (playerItem: IPlayerListItem) => {
   if (!playerItem) return null;
 
   return (
-    <div className="col-12 sm:col-6 md:col-4 lg:col-3 p-2">
+    <Link
+      className="col-12 sm:col-6 md:col-4 lg:col-3 p-2"
+      target="_blank"
+      href={`/players/${playerItem.username}`}
+      key={playerItem.username}
+    >
       <div
         className="
           p-4 bg-white rounded-xl border border-gray-200 shadow-sm 
@@ -24,11 +30,11 @@ const PlayerListCard = (playerItem: IPlayerListItem) => {
 
         <div className="space-y-1">
           <p className="text-lg font-bold text-gray-800">
-            Player #{playerItem.id}
+            Player #{playerItem.username}
           </p>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
