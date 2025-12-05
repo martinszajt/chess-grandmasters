@@ -1,5 +1,12 @@
 import PlayerView from "../../../views/player";
 
+export async function generateMetadata({ params }: Props) {
+
+  return {
+    title: `Player Profile - ${params.username}`,
+  };
+}
+
 type Props = {
   params: {
     username: string;
